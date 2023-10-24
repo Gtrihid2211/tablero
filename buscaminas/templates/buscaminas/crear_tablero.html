@@ -1,0 +1,55 @@
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/buscaminas.css' %}" />
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1><a class="" href="/">Buscaminas</a></h1>
+        
+            
+            
+        <h2>Nueva partida</h2>
+
+        <form class="form_crear_tablero" action="{% url 'crear_tablero' %}" method="get">
+            
+            {% for field in table_form %}
+            <div class="celdas">
+                <label class="label-celdas" for="{{ field.name }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="boton-crear-tabla">Crear tabla</button>
+        </form>
+
+        <div class="tabla">
+            {% if columna and fila %}
+            <table border="1">
+                {% for row in fila %}
+                <tr>
+                  {% for col in columna %}
+                  <td></td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </table>
+          
+              {% endif %}
+        </div>
+            
+    </div>
+
+
+
+
+</body>
+</html>
